@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
-using SGS.Portal.Api.Models;
-using SGS.Portal.Api.Services;
-using SGS.Portal.Api.ViewModels;
+using Sgs.Portal.Models;
+using Sgs.Portal.Shared.ViewModels;
 
 namespace SGS.Portal.Api.MappingProfiles
 {
-    public abstract class PortalMappingProfile <M,VM> : Profile where M : class, IApiModel, new() where VM : class, IApiViewModel, new()
+    public abstract class PortalMappingProfile <M,VM> : Profile where M : class, IPortalModel, new() where VM : class, IApiViewModel, new()
     {
         public PortalMappingProfile()
         {

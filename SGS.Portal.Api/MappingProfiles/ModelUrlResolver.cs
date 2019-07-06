@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Sgs.Portal.Models;
+using Sgs.Portal.Shared.ViewModels;
 using SGS.Portal.Api.Controllers;
-using SGS.Portal.Api.Services;
 
 namespace SGS.Portal.Api.MappingProfiles
 {
-    public class ModelUrlResolver<M, VM> : IValueResolver<M, VM, string> where M : class, IApiModel , new() where VM : class, IApiViewModel, new()
+    public class ModelUrlResolver<M, VM> : IValueResolver<M, VM, string> where M : class, IPortalModel , new() where VM : class, IApiViewModel, new()
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 

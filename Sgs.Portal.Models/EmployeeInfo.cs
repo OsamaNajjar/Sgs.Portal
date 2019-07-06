@@ -1,8 +1,6 @@
-﻿using SGS.Portal.Api.Services;
-
-namespace SGS.Portal.Api.Models
+﻿namespace Sgs.Portal.Models
 {
-    public class EmployeeInfo : IApiModel
+    public class EmployeeInfo : IPortalModel
     {
         public int Id { get; set; }
 
