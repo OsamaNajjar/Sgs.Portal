@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Sgs.Portal.Models;
+using Sgs.Portal.Shared.Services;
 using Sgs.Portal.Shared.ViewModels;
 
 namespace SGS.Portal.Api.MappingProfiles

@@ -1,4 +1,4 @@
-﻿namespace Sgs.Portal.Shared.ViewModels
+﻿namespace Sgs.Portal.Shared.Services
 {
     public interface IApiViewModel
     {

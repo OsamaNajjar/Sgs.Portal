@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sgs.Portal.Models;
-using Sgs.Portal.Shared.ViewModels;
+using Sgs.Portal.Shared.Services;
 using SGS.Portal.Api.Controllers;
 
 namespace SGS.Portal.Api.MappingProfiles
