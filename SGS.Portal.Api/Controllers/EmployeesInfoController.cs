@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Sgs.Portal.Models;
+using Sgs.Portal.Shared.Services;
 using Sgs.Portal.Shared.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,9 +11,12 @@ namespace SGS.Portal.Api.Controllers
 {
     public class EmployeesInfoController : BaseController
     {
-        public EmployeesInfoController(IMapper mapper,
+        private readonly IEmployeesManager _employeesManager;
+
+        public EmployeesInfoController(IEmployeesManager employeesManager,IMapper mapper,
             ILogger<EmployeesInfoController> logger) : base(mapper, logger)
         {
+            _employeesManager = employeesManager;
         }
 
         [HttpGet]

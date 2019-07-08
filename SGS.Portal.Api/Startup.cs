@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Sgs.Portal.Shared.Services;
 using SGS.Portal.Api.Services;
 
 namespace SGS.Portal.Api
@@ -33,6 +34,8 @@ namespace SGS.Portal.Api
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<ISmsSender, SmsSender>();
+
+            //services.AddScoped<IEmployeesManager,>
 
             //CORS
             services.AddCors(cfg =>
