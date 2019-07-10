@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Sgs.Portal.Models\Sgs.Portal.Models.csproj" />
+  </ItemGroup>
+
 </Project>

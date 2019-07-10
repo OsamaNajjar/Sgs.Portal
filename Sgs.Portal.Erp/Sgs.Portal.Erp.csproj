@@ -4,4 +4,13 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sgs.Portal.Models\Sgs.Portal.Models.csproj" />
+    <ProjectReference Include="..\Sgs.Portal.Shared\Sgs.Portal.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

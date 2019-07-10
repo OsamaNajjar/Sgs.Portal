@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Sgs.Portal.Erp;
 using Sgs.Portal.Shared.Services;
 using SGS.Portal.Api.Services;
+using System.Net.Http.Headers;
 
 namespace SGS.Portal.Api
 {
@@ -35,7 +37,12 @@ namespace SGS.Portal.Api
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<ISmsSender, SmsSender>();
 
-            //services.AddScoped<IEmployeesManager,>
+            services.AddHttpClient<IEmployeesManager, EmployeesManager>(client =>
+            {
+                client.BaseAddress = new System.Uri(@"http://172.16.11.44:810/HrPortalApi/api/Hr/portal/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType: "application/json"));
+            });
 
             //CORS
             services.AddCors(cfg =>

@@ -22,21 +22,23 @@ namespace SGS.Portal.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<ICollection<EmployeeInfoViewModel>>> Get()
         {
-            var empsInfo = new List<EmployeeInfo>
-            {
-                new EmployeeInfo{
-                Id = 1,
-                Code = "917",
-                Name = "Sameer"
-                },
-                new EmployeeInfo{
-                Id = 2,
-                Code = "1143",
-                Name = "osama"
-                },
-            };
+            //var empsInfo = new List<EmployeeInfo>
+            //{
+            //    new EmployeeInfo{
+            //    Id = 1,
+            //    Code = "917",
+            //    Name = "Sameer"
+            //    },
+            //    new EmployeeInfo{
+            //    Id = 2,
+            //    Code = "1143",
+            //    Name = "osama"
+            //    },
+            //};
 
-            return await Task.FromResult(_mapper.Map<List<EmployeeInfoViewModel>>( empsInfo ));
+            //return await Task.FromResult(_mapper.Map<List<EmployeeInfoViewModel>>( empsInfo ));
+
+            return _mapper.Map<List<EmployeeInfoViewModel>>(await _employeesManager.GetAllEmployeesInfo()) ;
         }
 
         [HttpGet("{code}", Name = "[controller]_ByCode")]
