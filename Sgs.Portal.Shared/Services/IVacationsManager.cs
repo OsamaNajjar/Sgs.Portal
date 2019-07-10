@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Sgs.Portal.Shared.Services
 {
-    interface IVacationsManager
+   public interface IVacationsManager
     {
     }
 }
