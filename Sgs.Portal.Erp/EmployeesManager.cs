@@ -19,7 +19,7 @@ namespace Sgs.Portal.Erp
             _client = client;
         }
 
-        public async Task<List<EmployeeInfo>> GetAllEmployeesInfo()
+        public async Task<ICollection<EmployeeInfo>> GetAllEmployeesInfo()
         {
             try
             {
@@ -52,14 +52,26 @@ namespace Sgs.Portal.Erp
             }
         }
 
-        public async Task<EmployeeInfoViewModel> GetEmployeeInfo(int employeeId)
+        public Task<EmployeeInfo> GetEmployeeInfo(string code)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<EmployeeInfoViewModel> GetManagerInfo(int employeeId)
+        public async Task<EmployeeInfo> GetEmployeeInfo(int employeeId)
         {
             throw new NotImplementedException();
         }
+
+        public async Task<EmployeeInfo> GetManagerInfo(int employeeId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+           _client.Dispose();
+        }
+
+        
     }
 }

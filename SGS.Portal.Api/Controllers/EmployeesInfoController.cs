@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Sgs.Portal.Models;
 using Sgs.Portal.Shared.Services;
 using Sgs.Portal.Shared.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -20,38 +21,49 @@ namespace SGS.Portal.Api.Controllers
         }
 
         [HttpGet]
+        [EnableQuery()]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
         public async Task<ActionResult<ICollection<EmployeeInfoViewModel>>> Get()
         {
-            //var empsInfo = new List<EmployeeInfo>
-            //{
-            //    new EmployeeInfo{
-            //    Id = 1,
-            //    Code = "917",
-            //    Name = "Sameer"
-            //    },
-            //    new EmployeeInfo{
-            //    Id = 2,
-            //    Code = "1143",
-            //    Name = "osama"
-            //    },
-            //};
+            try
+            {
+                using (_employeesManager)
+                {
+                    var employeesList = await _employeesManager.GetAllEmployeesInfo();
+                    return _mapper.Map<List<EmployeeInfoViewModel>>(employeesList);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error while getting employees data !. error message : {ex.Message}");
+            }
 
-            //return await Task.FromResult(_mapper.Map<List<EmployeeInfoViewModel>>( empsInfo ));
-
-            return _mapper.Map<List<EmployeeInfoViewModel>>(await _employeesManager.GetAllEmployeesInfo()) ;
+            return BadRequest();
         }
 
         [HttpGet("{code}", Name = "[controller]_ByCode")]
         public async Task<ActionResult<EmployeeInfoViewModel>> GetByCode(string code)
         {
-            var empInfo = new EmployeeInfo
+            try
             {
-                Id = 1,
-                Code = "917",
-                Name = "Sameer"
-            };
+                using (_employeesManager)
+                {
+                    var employeeInfo = await _employeesManager.GetEmployeeInfo(code);
 
-            return await Task.FromResult(_mapper.Map<EmployeeInfoViewModel>(empInfo));
+                    if (employeeInfo == null)
+                        return BadRequest(new { ErrorMessage = NOTFOUND_MESSAGE });
+
+                    return _mapper.Map<EmployeeInfoViewModel>(employeeInfo);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Error while employee data !. error message : {ex.Message}");
+            }
+
+            return BadRequest();
         }
+
     }
 }

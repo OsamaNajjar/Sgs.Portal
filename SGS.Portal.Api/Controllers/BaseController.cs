@@ -44,5 +44,18 @@ namespace SGS.Portal.Api.Controllers
                 });
             }
         }
+
+        //protected virtual void AddPaginationHeader(PagedDataResult<M> pagedData)
+        //{
+        //    var paginationHeader = new
+        //    {
+        //        currentPage = pagedData.PageNumber,
+        //        pageSize = pagedData.PageSize,
+        //        totalCount = pagedData.DataCount,
+        //        totalPages = pagedData.PagesCount
+        //    };
+
+        //    HttpContext.Response.Headers.Add(key: "X-Pagination", value: Newtonsoft.Json.JsonConvert.SerializeObject(paginationHeader));
+        //}
     }
 }

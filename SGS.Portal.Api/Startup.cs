@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNet.OData.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -43,6 +44,16 @@ namespace SGS.Portal.Api
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType: "application/json"));
             });
+
+            //Test
+            //services.AddHttpClient<IEmployeesManager, TestEmployeesManager>(client =>
+            //{
+            //    client.BaseAddress = new System.Uri(@"http://172.16.11.44:810/HrPortalApi/api/Hr/portal/");
+            //    client.DefaultRequestHeaders.Accept.Clear();
+            //    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType: "application/json"));
+            //});
+
+            services.AddOData();
 
             //CORS
             services.AddCors(cfg =>
@@ -93,7 +104,11 @@ namespace SGS.Portal.Api
                 app.UseStatusCodePagesWithReExecute("/api/Errors/{0}");
             }
 
-            app.UseMvc();
+
+            app.UseMvc(routeBuilder => {
+                routeBuilder.EnableDependencyInjection();
+                routeBuilder.Expand().Select().Count().OrderBy().Filter();
+            });
         }
     }
 }
