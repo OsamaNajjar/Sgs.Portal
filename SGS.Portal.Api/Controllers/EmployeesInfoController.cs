@@ -28,6 +28,7 @@ namespace SGS.Portal.Api.Controllers
         {
             try
             {
+                _logger.LogInformation(LoggingEvents.GettingDataStart, "Start getting all employees data");
                 using (_employeesManager)
                 {
                     var employeesList = await _employeesManager.GetAllEmployeesInfo();
@@ -36,7 +37,7 @@ namespace SGS.Portal.Api.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error while getting employees data !. error message : {ex.Message}");
+                _logger.LogError(LoggingEvents.GettingDataError,ex,$"Error while getting all employees data !. error message : {ex.Message}");
             }
 
             return BadRequest();
@@ -59,7 +60,7 @@ namespace SGS.Portal.Api.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Error while employee data !. error message : {ex.Message}");
+                _logger.LogError(LoggingEvents.GettingDataError,$"Error while getting employee data by code !. error message : {ex.Message}");
             }
 
             return BadRequest();

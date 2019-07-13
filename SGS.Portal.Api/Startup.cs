@@ -38,20 +38,20 @@ namespace SGS.Portal.Api
             services.AddTransient<IEmailSender, EmailSender>();
             services.AddTransient<ISmsSender, SmsSender>();
 
-            services.AddHttpClient<IEmployeesManager, EmployeesManager>(client =>
-            {
-                client.BaseAddress = new System.Uri(@"http://172.16.11.44:810/HrPortalApi/api/Hr/portal/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType: "application/json"));
-            });
-
-            //Test
-            //services.AddHttpClient<IEmployeesManager, TestEmployeesManager>(client =>
+            //services.AddHttpClient<IEmployeesManager, EmployeesManager>(client =>
             //{
             //    client.BaseAddress = new System.Uri(@"http://172.16.11.44:810/HrPortalApi/api/Hr/portal/");
             //    client.DefaultRequestHeaders.Accept.Clear();
             //    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType: "application/json"));
             //});
+
+            //Test
+            services.AddHttpClient<IEmployeesManager, TestEmployeesManager>(client =>
+            {
+                client.BaseAddress = new System.Uri(@"http://172.16.11.44:810/HrPortalApi/api/Hr/portal/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType: "application/json"));
+            });
 
             services.AddOData();
 
